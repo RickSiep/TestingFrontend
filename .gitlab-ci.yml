@@ -1,0 +1,25 @@
+image: node:18.14
+stages:
+  - build
+  - test
+
+run_test:
+  stage: test
+  before_script:
+    - npm install
+  script:
+    - npm run test
+  tags:
+    - hva
+
+build_image:
+  image: node:18.14
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  tags:
+    - hva
